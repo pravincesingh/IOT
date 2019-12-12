@@ -56,7 +56,6 @@ pyasn1==0.4.8
 pyasn1-modules==0.2.7
 pycryptodome==3.9.4
 Pygments==2.5.2
-pygpu==0.7.6
 pyreadline==2.1
 Pyrebase4==4.3.0
 pyrsistent==0.15.6
