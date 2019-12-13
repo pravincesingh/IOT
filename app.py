@@ -20,6 +20,7 @@ config = {
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
+@app.route("/smart.html", methods=['GET', 'POST'])
 @app.route("/", methods=['GET', 'POST'])
 def index():
     print(request.method)
@@ -49,9 +50,30 @@ def index():
     return render_template("smart.html")
 
 
+@app.route("/advance.html", methods=['GET', 'POST'])
+def advance():
+    print(request.method)
+    if request.method == 'POST':
+        if request.form.get('AON') == 'ON':
+                # pass
+            db.child("AdvanceMode").update({"mode":"on"})
+            print("Light on")
+        elif  request.form.get('AOFF') == 'OFF':
+                # pass # do something else
+            db.child("AdvanceMode").update({"mode":"off"})
+            print("Light off")
+        else:
+                # pass # unknown
+            return render_template("advance.html")
+    elif request.method == 'GET':
+            # return render_template("index.html")
+        print("No Post Back Call")
+    return render_template("advance.html")
+
+
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True, port=port)
+    # port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True)
 
 
      
